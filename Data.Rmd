@@ -1,0 +1,23 @@
+---
+title: "BigData"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+df = read.csv("C:/Dhananjay_PACE/Big Data/Project PHASE 1/Phase 2/2006.csv")
+```
+
+```{r}
+new_data = sample_n(df, 50003)
+
+f_data = new_data %>% mutate(Delayed = if_else(.$ArrDelay <= 0 & .$DepDelay <= 0, "N" , "Y"))
+
+f_data%>% select(ArrDelay, DepDelay, Delayed)
+
+write.csv(f_data, "C:/Dhananjay_PACE/Big Data/Project PHASE 1/Phase 2/sampled_2006.csv")
+```
+
